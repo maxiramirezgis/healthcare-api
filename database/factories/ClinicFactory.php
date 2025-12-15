@@ -14,6 +14,7 @@ use Sentry\ClientInterface;
 class ClinicFactory extends Factory
 {
     protected $model = Clinic::class;
+
     public function definition() : array
     {
         return [
