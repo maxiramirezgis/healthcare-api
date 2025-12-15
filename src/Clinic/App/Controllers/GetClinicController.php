@@ -11,7 +11,7 @@ use Lightit\Clinic\Domain\Actions\GetClinicAction;
 use Lightit\Clinic\Domain\Models\Clinic;
 
 #[Group('Clinics')]
-final readonly class GetClinicController
+final class GetClinicController
 {
     public function __invoke(Clinic $clinic, GetClinicAction $getClinicAction): JsonResponse
     {

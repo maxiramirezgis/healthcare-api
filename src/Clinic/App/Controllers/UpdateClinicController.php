@@ -12,7 +12,7 @@ use Lightit\Clinic\Domain\Actions\UpdateClinicAction;
 use Lightit\Clinic\Domain\Models\Clinic;
 
 #[Group('Clinics')]
-final readonly class UpdateClinicController
+final class UpdateClinicController
 {
     public function __invoke(
         Clinic $clinic,

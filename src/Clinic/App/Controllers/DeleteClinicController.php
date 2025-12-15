@@ -11,7 +11,7 @@ use Lightit\Clinic\Domain\Models\Clinic;
 use Symfony\Component\HttpFoundation\Response;
 
 #[Group('Clinics')]
-final readonly class DeleteClinicController
+final class DeleteClinicController
 {
     public function __invoke(Clinic $clinic, DeleteClinicAction $deleteClinicAction): JsonResponse
     {

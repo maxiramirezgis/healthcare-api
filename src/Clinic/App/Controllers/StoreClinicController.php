@@ -12,7 +12,7 @@ use Lightit\Clinic\Domain\Actions\StoreClinicAction;
 use Symfony\Component\HttpFoundation\Response;
 
 #[Group('Clinics')]
-final readonly class StoreClinicController
+final class StoreClinicController
 {
     public function __invoke(
         StoreClinicRequest $request,
