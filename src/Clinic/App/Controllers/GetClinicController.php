@@ -13,10 +13,8 @@ use Lightit\Clinic\Domain\Models\Clinic;
 #[Group('Clinics')]
 final class GetClinicController
 {
-    public function __invoke(Clinic $clinic, GetClinicAction $getClinicAction): JsonResponse
+    public function __invoke(Clinic $clinic): JsonResponse
     {
-        $clinic = $getClinicAction->execute($clinic);
-
         return ClinicResource::make($clinic)
             ->response();
     }
