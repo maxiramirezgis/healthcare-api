@@ -17,6 +17,11 @@ use Lightit\Clinic\App\Controllers\{
     StoreClinicController,
     UpdateClinicController
 };
+use Lightit\Doctor\App\Controllers\{
+    DeleteDoctorController,
+    GetDoctorController,
+    StoreDoctorController,
+    UpdateDoctorController};
 
 /*
 |--------------------------------------------------------------------------
@@ -66,4 +71,20 @@ Route::prefix('clinics')
             Route::put('/', UpdateClinicController::class);
             Route::delete('/', DeleteClinicController::class);
         })->whereUuid('clinic');
+    });
+
+/*
+|--------------------------------------------------------------------------
+| Doctors Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::prefix('doctors')
+    ->group(static function (): void {
+        Route::post('/', StoreDoctorController::class);
+        Route::prefix('{doctor}')->group(static function (): void {
+            Route::get('/', GetDoctorController::class);
+            Route::put('/', UpdateDoctorController::class);
+            Route::delete('/', DeleteDoctorController::class);
+        })->whereUuid('doctor');
     });
