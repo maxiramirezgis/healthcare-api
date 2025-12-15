@@ -17,6 +17,6 @@ final class DeleteClinicController
     {
         $deleteClinicAction->execute($clinic);
 
-        return response()->json(null, Response::HTTP_NO_CONTENT);
+        return response()->json(status: Response::HTTP_NO_CONTENT);
     }
 }
