@@ -8,7 +8,6 @@ use Dedoc\Scramble\Attributes\Group;
 use Illuminate\Http\JsonResponse;
 use Lightit\Doctor\Domain\Actions\DeleteDoctorAction;
 use Lightit\Doctor\Domain\Models\Doctor;
-use Symfony\Component\HttpFoundation\Response;
 use Throwable;
 
 #[Group('Doctors')]
@@ -21,6 +20,6 @@ final class DeleteDoctorController
     {
         $deleteDoctorAction->execute($doctor);
 
-        return response()->json(status: Response::HTTP_NO_CONTENT);
+        return response()->json(status: JsonResponse::HTTP_NO_CONTENT);
     }
 }

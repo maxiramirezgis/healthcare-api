@@ -9,7 +9,6 @@ use Illuminate\Http\JsonResponse;
 use Lightit\Doctor\App\Requests\UpsertDoctorRequest;
 use Lightit\Doctor\App\Resources\DoctorResource;
 use Lightit\Doctor\Domain\Actions\StoreDoctorAction;
-use Symfony\Component\HttpFoundation\Response;
 
 #[Group('Doctors')]
 final class StoreDoctorController
@@ -22,6 +21,6 @@ final class StoreDoctorController
 
         return DoctorResource::make($doctor)
             ->response()
-            ->setStatusCode(Response::HTTP_CREATED);
+            ->setStatusCode(JsonResponse::HTTP_CREATED);
     }
 }
