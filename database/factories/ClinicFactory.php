@@ -22,5 +22,4 @@ class ClinicFactory extends Factory
             'address' => $this->faker->address(),
         ];
     }
-
 }
