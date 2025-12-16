@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Lightit\Clinic\Domain\DataTransferObjects;
 
-final readonly class ClinicDTO
+final readonly class ClinicDto
 {
     public function __construct(
         public string $name,

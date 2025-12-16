@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Lightit\Clinic\App\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Lightit\Clinic\Domain\DataTransferObjects\ClinicDTO;
+use Lightit\Clinic\Domain\DataTransferObjects\ClinicDto;
 
 class UpsertClinicRequest extends FormRequest
 {
@@ -21,9 +21,9 @@ class UpsertClinicRequest extends FormRequest
         ];
     }
 
-    public function toDto(): ClinicDTO
+    public function toDto(): ClinicDto
     {
-        return new ClinicDTO(
+        return new ClinicDto(
             name: $this->string(self::NAME)->toString(),
             address: $this->string(self::ADDRESS)->toString(),
         );
