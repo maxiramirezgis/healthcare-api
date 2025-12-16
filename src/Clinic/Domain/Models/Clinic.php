@@ -4,18 +4,20 @@ declare(strict_types=1);
 
 namespace Lightit\Clinic\Domain\Models;
 
+use Eloquent;
 use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Lightit\Doctor\Domain\Models\Doctor;
 
 /**
- * @property int             $id
- * @property string          $name
- * @property string          $address
+ * @property int $id
+ * @property string $name
+ * @property string $address
  * @property CarbonImmutable $created_at
  * @property CarbonImmutable $updated_at
- *
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, Doctor> $doctors
+ * @property-read int|null $doctors_count
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Clinic newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Clinic newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Clinic query()
@@ -24,8 +26,7 @@ use Lightit\Doctor\Domain\Models\Doctor;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Clinic whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Clinic whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Clinic whereUpdatedAt($value)
- *
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class Clinic extends Model
 {

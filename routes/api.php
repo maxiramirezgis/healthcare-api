@@ -12,8 +12,11 @@ use Lightit\Users\App\Controllers\{
     UpdateUserController
 };
 use Lightit\Clinic\App\Controllers\{
+    AttachDoctorToClinicController,
     DeleteClinicController,
+    DetachDoctorFromClinicController,
     GetClinicController,
+    ListClinicDoctorsController,
     StoreClinicController,
     UpdateClinicController
 };
@@ -70,6 +73,12 @@ Route::prefix('clinics')
             Route::get('/', GetClinicController::class);
             Route::put('/', UpdateClinicController::class);
             Route::delete('/', DeleteClinicController::class);
+            Route::prefix('doctors')->group(static function (): void {
+                Route::get('/', ListClinicDoctorsController::class);
+                Route::post('/', AttachDoctorToClinicController::class);
+                Route::delete('{doctor}', DetachDoctorFromClinicController::class)
+                    ->whereNumber('doctor');
+            });
         })->whereNumber('clinic');
     });
 
