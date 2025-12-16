@@ -7,12 +7,14 @@ namespace Lightit\Doctor\Domain\Models;
 use Carbon\CarbonImmutable;
 use Eloquent;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Lightit\Clinic\Domain\Models\Clinic;
 
 /**
- * @property int                  $id
- * @property string               $name
- * @property CarbonImmutable|null $created_at
- * @property CarbonImmutable|null $updated_at
+ * @property int             $id
+ * @property string          $name
+ * @property CarbonImmutable $created_at
+ * @property CarbonImmutable $updated_at
  *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Doctor newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Doctor newQuery()
@@ -27,4 +29,12 @@ use Illuminate\Database\Eloquent\Model;
 class Doctor extends Model
 {
     protected $guarded = ['id'];
+
+    /**
+     * @return BelongsToMany<Clinic, $this>
+     */
+    public function clinics(): BelongsToMany
+    {
+        return $this->belongsToMany(Clinic::class);
+    }
 }

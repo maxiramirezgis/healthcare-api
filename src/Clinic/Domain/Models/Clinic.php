@@ -6,6 +6,8 @@ namespace Lightit\Clinic\Domain\Models;
 
 use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Lightit\Doctor\Domain\Models\Doctor;
 
 /**
  * @property int             $id
@@ -28,4 +30,12 @@ use Illuminate\Database\Eloquent\Model;
 class Clinic extends Model
 {
     protected $guarded = ['id'];
+
+    /**
+     * @return BelongsToMany<Doctor, $this>
+     */
+    public function doctors(): BelongsToMany
+    {
+        return $this->belongsToMany(Doctor::class);
+    }
 }
