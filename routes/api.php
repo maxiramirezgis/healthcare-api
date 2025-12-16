@@ -70,7 +70,7 @@ Route::prefix('clinics')
             Route::get('/', GetClinicController::class);
             Route::put('/', UpdateClinicController::class);
             Route::delete('/', DeleteClinicController::class);
-        })->whereUuid('clinic');
+        })->whereNumber('clinic');
     });
 
 /*
@@ -86,5 +86,5 @@ Route::prefix('doctors')
             Route::get('/', GetDoctorController::class);
             Route::put('/', UpdateDoctorController::class);
             Route::delete('/', DeleteDoctorController::class);
-        })->whereUuid('doctor');
+        })->whereNumber('doctor');
     });
