@@ -9,7 +9,6 @@ use Illuminate\Http\JsonResponse;
 use Lightit\Clinic\App\Requests\UpsertClinicRequest;
 use Lightit\Clinic\App\Resources\ClinicResource;
 use Lightit\Clinic\Domain\Actions\StoreClinicAction;
-use Symfony\Component\HttpFoundation\Response;
 
 #[Group('Clinics')]
 final class StoreClinicController
@@ -22,6 +21,6 @@ final class StoreClinicController
 
         return ClinicResource::make($clinic)
             ->response()
-            ->setStatusCode(Response::HTTP_CREATED);
+            ->setStatusCode(JsonResponse::HTTP_CREATED);
     }
 }
