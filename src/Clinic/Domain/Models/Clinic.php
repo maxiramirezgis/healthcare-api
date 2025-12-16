@@ -8,9 +8,9 @@ use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @property int                          $id
- * @property string                       $name
- * @property string                       $address
+ * @property int             $id
+ * @property string          $name
+ * @property string          $address
  * @property CarbonImmutable $created_at
  * @property CarbonImmutable $updated_at
  *
