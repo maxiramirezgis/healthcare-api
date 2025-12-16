@@ -4,11 +4,19 @@ declare(strict_types=1);
 
 use Illuminate\Container\Attributes\CurrentUser;
 use Illuminate\Support\Facades\Route;
-use Lightit\Users\App\Controllers\{GetUserController, DeleteUserController, ListUserController, StoreUserController, UpdateUserController};
-use Lightit\Clinic\App\Controllers\{DeleteClinicController,
+use Lightit\Users\App\Controllers\{
+    GetUserController,
+    DeleteUserController,
+    ListUserController,
+    StoreUserController,
+    UpdateUserController
+};
+use Lightit\Clinic\App\Controllers\{
+    DeleteClinicController,
     GetClinicController,
     StoreClinicController,
-    UpdateClinicController};
+    UpdateClinicController
+};
 
 /*
 |--------------------------------------------------------------------------
