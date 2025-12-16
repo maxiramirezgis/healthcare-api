@@ -8,8 +8,11 @@ use Lightit\Clinic\Domain\Models\Clinic;
 
 class AttachDoctorToClinicAction
 {
-    public function execute(Clinic $clinic, int $doctorId): void
+    /**
+     * @param array<int> $doctorIds
+     */
+    public function execute(Clinic $clinic, array $doctorIds): void
     {
-        $clinic->doctors()->syncWithoutDetaching([$doctorId]);
+        $clinic->doctors()->syncWithoutDetaching($doctorIds);
     }
 }

@@ -9,21 +9,27 @@ use Illuminate\Validation\Rule;
 
 class AttachDoctorRequest extends FormRequest
 {
-    public const string DOCTOR_ID = 'doctor_id';
+    public const string DOCTOR_IDS = 'doctor_ids';
 
     public function rules(): array
     {
         return [
-            self::DOCTOR_ID => [
+            self::DOCTOR_IDS => [
                 'required',
+                'array',
+            ],
+            self::DOCTOR_IDS . '.*' => [
                 'integer',
                 Rule::exists('doctors', 'id'),
             ],
         ];
     }
 
-    public function getDoctorId(): int
+    /**
+     * @return array<int>
+     */
+    public function getDoctorIds(): array
     {
-        return $this->integer(self::DOCTOR_ID);
+        return $this->input(self::DOCTOR_IDS);
     }
 }

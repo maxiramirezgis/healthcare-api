@@ -19,10 +19,10 @@ final class AttachDoctorToClinicController
         AttachDoctorRequest $request,
         AttachDoctorToClinicAction $action,
     ): JsonResponse {
-        $action->execute($clinic, $request->getDoctorId());
+        $action->execute($clinic, $request->getDoctorIds());
 
         return response()->json(
-            ['message' => 'Doctor successfully attached to clinic'],
+            ['message' => 'Doctors successfully attached to clinic'],
             Response::HTTP_CREATED
         );
     }
