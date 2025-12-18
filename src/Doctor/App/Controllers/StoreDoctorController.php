@@ -9,10 +9,14 @@ use Illuminate\Http\JsonResponse;
 use Lightit\Doctor\App\Requests\UpsertDoctorRequest;
 use Lightit\Doctor\App\Resources\DoctorResource;
 use Lightit\Doctor\Domain\Actions\StoreDoctorAction;
+use Throwable;
 
 #[Group('Doctors')]
 final class StoreDoctorController
 {
+    /**
+     * @throws Throwable
+     */
     public function __invoke(
         UpsertDoctorRequest $request,
         StoreDoctorAction $action,
