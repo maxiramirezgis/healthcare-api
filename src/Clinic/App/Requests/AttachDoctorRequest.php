@@ -17,7 +17,7 @@ class AttachDoctorRequest extends FormRequest
             self::DOCTOR_IDS => [
                 'required',
                 'array',
-                new DoctorsExists()
+                new DoctorsExists(),
             ],
             self::DOCTOR_IDS . '.*' => [
                 'integer',
