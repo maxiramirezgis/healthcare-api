@@ -34,7 +34,7 @@ class AttachDoctorRequest extends FormRequest
                 return;
             }
 
-            $existingCount = Doctor::whereIn('id', $ids)->count();
+            $existingCount = Doctor::query()->whereIn('id', $ids)->count();
 
             if ($existingCount !== count($ids)) {
                 $validator->errors()->add(
