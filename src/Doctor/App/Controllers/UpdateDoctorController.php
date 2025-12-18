@@ -10,10 +10,14 @@ use Lightit\Doctor\App\Requests\UpsertDoctorRequest;
 use Lightit\Doctor\App\Resources\DoctorResource;
 use Lightit\Doctor\Domain\Actions\UpdateDoctorAction;
 use Lightit\Doctor\Domain\Models\Doctor;
+use Throwable;
 
 #[Group('Doctors')]
 final class UpdateDoctorController
 {
+    /**
+     * @throws Throwable
+     */
     public function __invoke(
         Doctor $doctor,
         UpsertDoctorRequest $request,
