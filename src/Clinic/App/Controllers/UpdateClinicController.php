@@ -10,10 +10,14 @@ use Lightit\Clinic\App\Requests\UpsertClinicRequest;
 use Lightit\Clinic\App\Resources\ClinicResource;
 use Lightit\Clinic\Domain\Actions\UpdateClinicAction;
 use Lightit\Clinic\Domain\Models\Clinic;
+use Throwable;
 
 #[Group('Clinics')]
 final class UpdateClinicController
 {
+    /**
+     * @throws Throwable
+     */
     public function __invoke(
         Clinic $clinic,
         UpsertClinicRequest $request,
