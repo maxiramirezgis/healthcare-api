@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace Lightit\Clinic\App\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
+use Illuminate\Validation\Validator;
+use Lightit\Doctor\Domain\Models\Doctor;
 
 class AttachDoctorRequest extends FormRequest
 {
@@ -20,9 +21,28 @@ class AttachDoctorRequest extends FormRequest
             ],
             self::DOCTOR_IDS . '.*' => [
                 'integer',
-                Rule::exists('doctors', 'id'),
             ],
         ];
+    }
+
+    public function withValidator(Validator $validator): void
+    {
+        $validator->after(function (Validator $validator): void {
+            $ids = $this->array(self::DOCTOR_IDS);
+
+            if (empty($ids)) {
+                return;
+            }
+
+            $existingCount = Doctor::whereIn('id', $ids)->count();
+
+            if ($existingCount !== count($ids)) {
+                $validator->errors()->add(
+                    self::DOCTOR_IDS,
+                    'One or more doctor IDs do not exist.'
+                );
+            }
+        });
     }
 
     /**
