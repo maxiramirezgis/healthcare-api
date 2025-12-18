@@ -51,6 +51,6 @@ class AttachDoctorRequest extends FormRequest
     public function getDoctorIds(): array
     {
         /** @var array<int> */
-        return $this->input(self::DOCTOR_IDS);
+        return $this->array(self::DOCTOR_IDS);
     }
 }
