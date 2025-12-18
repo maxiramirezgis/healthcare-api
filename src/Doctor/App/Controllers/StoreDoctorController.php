@@ -21,7 +21,7 @@ final class StoreDoctorController
         UpsertDoctorRequest $request,
         StoreDoctorAction $action,
     ): JsonResponse {
-        $doctor = $action->execute($request->toDto());
+        $doctor = $action->execute($request->getDoctorName());
 
         return DoctorResource::make($doctor)
             ->response()
