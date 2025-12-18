@@ -9,10 +9,14 @@ use Illuminate\Http\JsonResponse;
 use Lightit\Clinic\App\Requests\UpsertClinicRequest;
 use Lightit\Clinic\App\Resources\ClinicResource;
 use Lightit\Clinic\Domain\Actions\StoreClinicAction;
+use Throwable;
 
 #[Group('Clinics')]
 final class StoreClinicController
 {
+    /**
+     * @throws Throwable
+     */
     public function __invoke(
         UpsertClinicRequest $request,
         StoreClinicAction $action,
