@@ -17,8 +17,8 @@ use Lightit\Users\Domain\Models\User;
  * @property int                  $clinic_id
  * @property int                  $doctor_id
  * @property int                  $user_id
- * @property string               $starts_at
- * @property string               $ends_at
+ * @property CarbonImmutable      $starts_at
+ * @property CarbonImmutable      $ends_at
  * @property CarbonImmutable      $created_at
  * @property CarbonImmutable      $updated_at
  * @property CarbonImmutable|null $deleted_at
