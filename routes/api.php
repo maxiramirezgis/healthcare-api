@@ -26,6 +26,12 @@ use Lightit\Doctor\App\Controllers\{
     StoreDoctorController,
     UpdateDoctorController
 };
+use Lightit\Appointments\App\Controllers\{
+    DeleteAppointmentController,
+    GetAppointmentController,
+    StoreAppointmentController,
+    UpdateAppointmentController
+};
 use Lightit\Authentication\App\Controllers\{
     LoginController,
     LogoutController,
@@ -115,4 +121,20 @@ Route::prefix('doctors')
             Route::put('/', UpdateDoctorController::class);
             Route::delete('/', DeleteDoctorController::class);
         })->whereNumber('doctor');
+    });
+
+/*
+|--------------------------------------------------------------------------
+| Appointments Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::prefix('appointments')
+    ->group(static function (): void {
+        Route::post('/', StoreAppointmentController::class);
+        Route::prefix('{appointment}')->group(static function (): void {
+            Route::get('/', GetAppointmentController::class);
+            Route::put('/', UpdateAppointmentController::class);
+            Route::delete('/', DeleteAppointmentController::class);
+        })->whereNumber('appointment');
     });
