@@ -24,7 +24,13 @@ use Lightit\Doctor\App\Controllers\{
     DeleteDoctorController,
     GetDoctorController,
     StoreDoctorController,
-    UpdateDoctorController};
+    UpdateDoctorController
+};
+use Lightit\Authentication\App\Controllers\{
+    LoginController,
+    LogoutController,
+    RefreshController
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +49,19 @@ Route::middleware('auth:sanctum')
     ) => response()->json([
         'data' => $user,
     ]));
+
+/*
+|--------------------------------------------------------------------------
+| Auth Routes
+|--------------------------------------------------------------------------
+*/
+Route::prefix('auth')->group(static function (): void {
+    Route::post('login', LoginController::class);
+    Route::middleware(['auth'])->group(static function (): void {
+        Route::post('logout', LogoutController::class);
+        Route::post('refresh', RefreshController::class);
+    });
+});
 
 /*
 |--------------------------------------------------------------------------
