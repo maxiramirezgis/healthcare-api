@@ -9,6 +9,8 @@ use Eloquent;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Lightit\Appointments\Domain\Models\Appointment;
 use Lightit\Clinic\Domain\Models\Clinic;
 
 /**
@@ -16,6 +18,8 @@ use Lightit\Clinic\Domain\Models\Clinic;
  * @property string          $name
  * @property CarbonImmutable $created_at
  * @property CarbonImmutable $updated_at
+ * @property-read Collection<int, Appointment> $appointments
+ * @property-read int|null $appointments_count
  * @property-read Collection<int, Clinic> $clinics
  * @property-read int|null $clinics_count
  *
@@ -39,5 +43,13 @@ class Doctor extends Model
     public function clinics(): BelongsToMany
     {
         return $this->belongsToMany(Clinic::class);
+    }
+
+    /**
+     * @return HasMany<Appointment, $this>
+     */
+    public function appointments(): HasMany
+    {
+        return $this->hasMany(Appointment::class);
     }
 }
