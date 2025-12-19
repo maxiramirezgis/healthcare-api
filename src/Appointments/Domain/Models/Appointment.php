@@ -50,6 +50,14 @@ class Appointment extends Model
 
     protected $guarded = ['id'];
 
+    protected function casts(): array
+    {
+        return [
+            'starts_at' => 'immutable_datetime',
+            'ends_at' => 'immutable_datetime',
+        ];
+    }
+
     /**
      * @return BelongsTo<Clinic, $this>
      */
