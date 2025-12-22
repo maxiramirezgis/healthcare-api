@@ -5,12 +5,16 @@ declare(strict_types=1);
 namespace Lightit\Appointments\App\Requests;
 
 use Carbon\CarbonImmutable;
+use Illuminate\Container\Attributes\CurrentUser;
+use Illuminate\Container\Attributes\RouteParameter;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Lightit\Appointments\App\Rules\DoctorHasNoOverlappingAppointments;
 use Lightit\Appointments\App\Rules\DoctorWorksAtClinic;
 use Lightit\Appointments\App\Rules\UserHasNoOverlappingAppointments;
 use Lightit\Appointments\Domain\DataTransferObjects\AppointmentDto;
+use Lightit\Appointments\Domain\Models\Appointment;
+use Lightit\Users\Domain\Models\User;
 
 class UpsertAppointmentRequest extends FormRequest
 {
@@ -23,6 +27,19 @@ class UpsertAppointmentRequest extends FormRequest
     public const string STARTS_AT = 'starts_at';
 
     public const string ENDS_AT = 'ends_at';
+
+    public function authorize(
+        #[CurrentUser]
+        User $user,
+        #[RouteParameter('appointment')]
+        Appointment|null $appointment,
+    ): bool {
+        if ($appointment instanceof Appointment) {
+            return $appointment->user_id === $user->id;
+        }
+
+        return true;
+    }
 
     public function rules(): array
     {
