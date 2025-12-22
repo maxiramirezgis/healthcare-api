@@ -31,7 +31,7 @@ class UpsertAppointmentRequest extends FormRequest
         $userId = $this->integer(self::USER_ID);
         $startsAt = $this->string(self::STARTS_AT)->toString();
         $endsAt = $this->string(self::ENDS_AT)->toString();
-        $appointmentId = $this->route('appointment')?->id;
+        $appointmentId = $this->route('appointment');
 
         return [
             self::CLINIC_ID => ['required', 'integer', Rule::exists('clinics', 'id')],
