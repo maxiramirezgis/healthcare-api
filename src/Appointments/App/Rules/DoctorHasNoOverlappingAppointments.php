@@ -14,7 +14,7 @@ class DoctorHasNoOverlappingAppointments implements ValidationRule
         private readonly int $doctorId,
         private readonly string $startsAt,
         private readonly string $endsAt,
-        private readonly int|null $excludeAppointmentId = null,
+        private readonly Appointment|null $excludeAppointment,
     ) {
     }
 
@@ -25,8 +25,8 @@ class DoctorHasNoOverlappingAppointments implements ValidationRule
             ->where('starts_at', '<', $this->endsAt)
             ->where('ends_at', '>', $this->startsAt);
 
-        if ($this->excludeAppointmentId) {
-            $query->where('id', '!=', $this->excludeAppointmentId);
+        if ($this->excludeAppointment instanceof Appointment) {
+            $query->where('id', '!=', $this->excludeAppointment->id);
         }
 
         if ($query->exists()) {
