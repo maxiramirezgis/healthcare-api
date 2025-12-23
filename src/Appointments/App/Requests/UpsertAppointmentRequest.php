@@ -75,8 +75,8 @@ class UpsertAppointmentRequest extends FormRequest
                     $appointment
                 ),
             ],
-            self::STARTS_AT => ['required', 'date', 'date_format:Y-m-d H:i:s', 'after:now'],
-            self::ENDS_AT => ['required', 'date', 'date_format:Y-m-d H:i:s', 'after:starts_at'],
+            self::STARTS_AT => ['required', Rule::date()->format('Y-m-d H:i:s')->after(now())],
+            self::ENDS_AT => ['required', Rule::date()->format('Y-m-d H:i:s')->after(self::STARTS_AT)],
         ];
     }
 
