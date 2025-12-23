@@ -130,6 +130,7 @@ Route::prefix('doctors')
 */
 
 Route::prefix('appointments')
+    ->middleware('auth:api')
     ->group(static function (): void {
         Route::post('/', StoreAppointmentController::class);
         Route::prefix('{appointment}')->group(static function (): void {

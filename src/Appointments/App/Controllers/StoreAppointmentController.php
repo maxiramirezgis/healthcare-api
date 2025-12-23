@@ -9,10 +9,14 @@ use Illuminate\Http\JsonResponse;
 use Lightit\Appointments\App\Requests\UpsertAppointmentRequest;
 use Lightit\Appointments\App\Resources\AppointmentResource;
 use Lightit\Appointments\Domain\Actions\StoreAppointmentAction;
+use Throwable;
 
 #[Group('Appointments')]
 final class StoreAppointmentController
 {
+    /**
+     * @throws Throwable
+     */
     public function __invoke(
         UpsertAppointmentRequest $request,
         StoreAppointmentAction $action,
