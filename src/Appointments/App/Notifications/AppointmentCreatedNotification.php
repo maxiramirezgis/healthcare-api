@@ -9,6 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Lightit\Appointments\Domain\Models\Appointment;
+use Lightit\Users\Domain\Models\User;
 
 class AppointmentCreatedNotification extends Notification implements ShouldQueue
 {
@@ -27,13 +28,13 @@ class AppointmentCreatedNotification extends Notification implements ShouldQueue
         return ['mail'];
     }
 
-    public function toMail(object $notifiable): MailMessage
+    public function toMail(User $user): MailMessage
     {
         return new MailMessage()
             ->subject('Appointment Confirmed')
             ->markdown('mail.mail', [
                 'appointment' => $this->appointment,
-                'user' => $notifiable,
+                'name' => $user->name,
             ]);
     }
 }

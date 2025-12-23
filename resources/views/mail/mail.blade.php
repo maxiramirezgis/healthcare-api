@@ -1,7 +1,7 @@
 @component('mail::message')
 # Appointment Confirmed
 
-Hello {{ $user->name }},
+Hello {{ $name }},
 
 Your appointment has been successfully scheduled!
 
