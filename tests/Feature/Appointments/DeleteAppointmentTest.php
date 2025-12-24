@@ -7,10 +7,8 @@ namespace Tests\Feature\Appointments;
 use Database\Factories\AppointmentFactory;
 use Lightit\Appointments\App\Controllers\DeleteAppointmentController;
 use function Pest\Laravel\actingAs;
-use function Pest\Laravel\assertDatabaseMissing;
-use function Pest\Laravel\deleteJson;
 use function Pest\Laravel\assertSoftDeleted;
-
+use function Pest\Laravel\deleteJson;
 
 describe('appointments', function (): void {
     /** @see DeleteAppointmentController */
