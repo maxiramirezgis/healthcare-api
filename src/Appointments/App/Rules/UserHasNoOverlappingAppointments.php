@@ -20,6 +20,18 @@ class UserHasNoOverlappingAppointments implements ValidationRule
 
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
+        if ($this->userId <= 0 || ! is_int($value)) {
+            return;
+        }
+
+        if ($this->startsAt === '' || $this->startsAt === '0' || ($this->endsAt === '' || $this->endsAt === '0')) {
+            return;
+        }
+
+        if (strtotime($this->startsAt) === false || strtotime($this->endsAt) === false) {
+            return;
+        }
+
         $query = Appointment::query()
             ->where('user_id', $this->userId)
             ->where('starts_at', '<', $this->endsAt)
