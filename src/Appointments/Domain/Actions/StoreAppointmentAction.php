@@ -30,6 +30,7 @@ final readonly class StoreAppointmentAction
 
         $appointment->load('clinic');
         $appointment->load('doctor');
+        $appointment->load('user');
 
         $user->notify(new AppointmentCreatedNotification($appointment));
 

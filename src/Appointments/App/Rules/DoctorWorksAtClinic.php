@@ -17,6 +17,10 @@ class DoctorWorksAtClinic implements ValidationRule
 
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
+        if (! is_int($value) || $this->clinicId <= 0) {
+            return;
+        }
+
         $doctorId = $value;
 
         $exists = DB::table('clinic_doctor')
