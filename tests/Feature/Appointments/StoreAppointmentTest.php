@@ -10,7 +10,6 @@ use Database\Factories\DoctorFactory;
 use Database\Factories\UserFactory;
 use Lightit\Appointments\App\Controllers\StoreAppointmentController;
 use Lightit\Appointments\Domain\Models\Appointment;
-use Lightit\Users\Domain\Models\User;
 use Tests\RequestFactories\StoreAppointmentRequestFactory;
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\assertDatabaseHas;
@@ -41,9 +40,11 @@ dataset('validation-rules', [
 describe('appointments', function (): void {
     /** @see StoreAppointmentController */
     it('can create an appointment successfully', function (): void {
-        $data = StoreAppointmentRequestFactory::new()->create();
+        $user = UserFactory::new()->createOne();
+        $data = StoreAppointmentRequestFactory::new()->create([
+            'user_id' => $user->id,
+        ]);
 
-        $user = User::query()->find($data['user_id']);
         actingAs($user);
 
         $response = postJson('/api/appointments', $data);
